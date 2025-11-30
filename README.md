@@ -31,20 +31,20 @@ A decentralized file storage platform leveraging **IPFS** and **NFT.Storage** to
 
 Create a .env file in the backend directory (if not already present), and configure the following environment variables:
 
-NODE_ENV=production — Running in production mode.
-
-PORT=3000 — Port on which the backend API will run.
-
-IPFS_HOST=ipfs — The hostname of the IPFS container (from docker-compose.yml).
-
-IPFS_PORT=5001 — The port on which IPFS API is exposed.
-
-IPFS_PROTOCOL=http — Use HTTP protocol to communicate with IPFS.
-
-NFT_STORAGE_API_KEY — The API key for NFT.Storage (sign up at nft.storage
-) to store files linked to NFTs.
-
-CORS_ORIGIN=* — This allows requests from any origin (modify this as per security requirements).
+    NODE_ENV=production — Running in production mode.
+    
+    PORT=3000 — Port on which the backend API will run.
+    
+    IPFS_HOST=ipfs — The hostname of the IPFS container (from docker-compose.yml).
+    
+    IPFS_PORT=5001 — The port on which IPFS API is exposed.
+    
+    IPFS_PROTOCOL=http — Use HTTP protocol to communicate with IPFS.
+    
+    NFT_STORAGE_API_KEY — The API key for NFT.Storage (sign up at nft.storage
+    ) to store files linked to NFTs.
+    
+    CORS_ORIGIN=* — This allows requests from any origin (modify this as per security requirements).
 
 You can copy the environment variables from the .env.example file and update as necessary.
 
@@ -52,8 +52,7 @@ You can copy the environment variables from the .env.example file and update as 
 
 Use Docker Compose to build and run the entire application stack.
 
-docker-compose up --build
-
+    docker-compose up --build
 
 This command will:
 
@@ -85,7 +84,7 @@ Backend handles the upload: The backend communicates with IPFS or NFT.Storage to
 
 File Retrieval: Once uploaded, files are stored in IPFS, and metadata is saved in the backend for easy access.
 
-API Endpoints
+## API Endpoints
 
 POST /upload: Upload a file to IPFS or NFT.Storage.
 
@@ -97,11 +96,11 @@ GET /files/:id: Retrieve file metadata and its URL.
 
 GET /files: List all uploaded files.
 
-Docker Compose Configuration
+## Docker Compose Configuration
 
 The docker-compose.yml file defines three services:
 
-IPFS Node: Runs an IPFS node to handle decentralized file storage.
+- IPFS Node: Runs an IPFS node to handle decentralized file storage.
 
 Exposes ports:
 
@@ -111,27 +110,27 @@ Exposes ports:
 
 8080: Gateway for accessing files
 
-Backend API: Node.js backend for handling requests related to file uploads and interacting with IPFS and NFT.Storage.
+- Backend API: Node.js backend for handling requests related to file uploads and interacting with IPFS and NFT.Storage.
 
 Exposes port 3000 for API access.
 
 Depends on the IPFS node.
 
-Frontend: Web frontend to allow users to interact with the platform.
+- Frontend: Web frontend to allow users to interact with the platform.
 
 Exposes port 8085 for accessing the web interface.
 
 Depends on the backend API.
 
-Volumes
+- Volumes
 
 ipfs-data: This volume stores the data for the IPFS node, ensuring that uploaded files persist across container restarts.
 
-Networks
+- Networks
 
 ipfs-network: A custom network to ensure communication between the IPFS, backend, and frontend services.
 
-Running in Production
+- Running in Production
 
 To deploy the app in a production environment:
 
@@ -141,7 +140,7 @@ Ensure that the IPFS node is properly configured (or use a cloud-based IPFS prov
 
 Configure SSL certificates (if necessary) for secure connections.
 
-Contributing
+- Contributing
 
 Fork the repository.
 
