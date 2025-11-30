@@ -24,11 +24,10 @@ A decentralized file storage platform leveraging **IPFS** and **NFT.Storage** to
 
 ### 1. Clone the repository:
 
-```bash
-git clone https://github.com/VedantTK/Decentralized-Storage-Platform.git
-cd Decentralized-Storage-Platform
+    git clone https://github.com/VedantTK/Decentralized-Storage-Platform.git
+    cd Decentralized-Storage-Platform
 
-2. Configuration
+### 2. Configuration
 
 Create a .env file in the backend directory (if not already present), and configure the following environment variables:
 
@@ -49,7 +48,7 @@ CORS_ORIGIN=* — This allows requests from any origin (modify this as per secur
 
 You can copy the environment variables from the .env.example file and update as necessary.
 
-3. Build and Start with Docker Compose
+### 3. Build and Start with Docker Compose
 
 Use Docker Compose to build and run the entire application stack.
 
@@ -72,13 +71,13 @@ Backend API: 3000 (Application)
 
 Frontend: 8085 (Web Interface)
 
-4. Access the Application
+### 4. Access the Application
 
 Frontend Web Interface: Visit http://localhost:8085 to interact with the platform through a web browser.
 
 Backend API: Access the backend API at http://localhost:3000.
 
-5. Storing Files
+### 5. Storing Files
 
 Upload a file: Use the frontend interface to upload files.
 
