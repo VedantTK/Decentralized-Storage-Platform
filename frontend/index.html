@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decentralized Storage - IPFS & NFT.Storage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌐 Decentralized Storage</h1>
+            <p>Upload files to IPFS and pin them to NFT.Storage</p>
+        </header>
+
+        <main>
+            <!-- Upload Section -->
+            <section class="card">
+                <h2>📤 Upload File</h2>
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="fileInput" hidden>
+                    <div class="upload-content">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <p>Click or drag file to upload</p>
+                        <small>Max size: 100MB</small>
+                    </div>
+                </div>
+                <button id="uploadBtn" class="btn btn-primary" disabled>Upload to IPFS</button>
+                
+                <div id="uploadStatus" class="status-area" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p id="statusText"></p>
+                </div>
+
+                <div id="uploadResult" class="result-area" style="display: none;">
+                    <h3>✅ Upload Successful!</h3>
+                    <div class="result-item">
+                        <strong>CID:</strong>
+                        <code id="resultCID"></code>
+                        <button class="btn-copy" onclick="copyToClipboard('resultCID')">Copy</button>
+                    </div>
+                    <div class="result-item">
+                        <strong>Gateways:</strong>
+                        <ul id="gatewayList"></ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Retrieve Section -->
+            <section class="card">
+                <h2>📥 Retrieve File</h2>
+                <div class="input-group">
+                    <input type="text" id="cidInput" placeholder="Enter CID (e.g., bafybeig...)">
+                    <button id="retrieveBtn" class="btn btn-secondary">Retrieve</button>
+                </div>
+                
+                <div id="retrieveResult" class="result-area" style="display: none;">
+                    <h3>File Preview</h3>
+                    <div id="filePreview"></div>
+                </div>
+            </section>
+
+            <!-- Recent Uploads -->
+            <section class="card">
+                <h2>📋 Recent Uploads</h2>
+                <div id="recentList" class="recent-list">
+                    <p class="empty-state">No uploads yet</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Powered by IPFS & NFT.Storage</p>
+        </footer>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

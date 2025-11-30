@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # IPFS Node
+  ipfs:
+    image: ipfs/kubo:latest
+    container_name: ipfs-node
+    ports:
+      - "4001:4001"     # Swarm
+      - "5001:5001"     # API
+      - "8080:8080"     # Gateway
+    volumes:
+      - ipfs-data:/data/ipfs
+    environment:
+      - IPFS_PROFILE=server
+    networks:
+      - ipfs-network
+    restart: unless-stopped
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: storage-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - IPFS_HOST=ipfs
+      - IPFS_PORT=5001
+      - IPFS_PROTOCOL=http
+      - NFT_STORAGE_API_KEY=nft.storage-apikey
+      - CORS_ORIGIN=*
+    depends_on:
+      - ipfs
+    networks:
+      - ipfs-network
+    restart: unless-stopped
+
+  # Frontend Web Server
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: storage-frontend
+    ports:
+      - "8085:80"
+    depends_on:
+      - backend
+    networks:
+      - ipfs-network
+    restart: unless-stopped
+
+volumes:
+  ipfs-data:
+
+networks:
+  ipfs-network:
+    driver: bridge
